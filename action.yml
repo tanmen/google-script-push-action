@@ -1,0 +1,31 @@
+name: Google Script Push
+description: Google Script Push
+branding:
+  icon: check
+  color: green
+inputs:
+  github-token:
+    description: Github Token
+    required: true
+  refresh-token:
+    description: Google Refresh Token
+    required: true
+  client-id:
+    description: Google Client ID
+    required: true
+  client-secret:
+    description: Google Client Sercret
+    required: true
+  force-push:
+    description: If true, force push.
+    required: false
+    default: 'false'
+runs:
+  using: 'docker'
+  image: 'Dockerfile'
+  args:
+    - ${{ inputs.github-token }}
+    - ${{ inputs.refresh-token }}
+    - ${{ inputs.client-id }}
+    - ${{ inputs.client-secret }}
+    - ${{ inputs.force-push }}
